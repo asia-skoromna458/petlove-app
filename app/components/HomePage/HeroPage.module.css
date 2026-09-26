@@ -1,0 +1,36 @@
+.container {
+  padding: 10px 20px 0 10px;
+}
+.heroTitle {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  color: #fff;
+  padding-top: 118px;
+}
+.titleSpan {
+  color: rgba(255, 255, 255, 0.4);
+}
+.heroText {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.titleContainer {
+  position: relative;
+  z-index: 1;
+
+  margin-top: -60px;
+
+  border-radius: 30px;
+  min-width: 335px;
+  min-height: 390px;
+  background: #f6b83d;
+}
+.heroImage {
+  width: 335px;
+  height: 402px;
+}

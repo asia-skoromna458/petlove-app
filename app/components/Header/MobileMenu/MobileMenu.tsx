@@ -12,7 +12,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
     <div className={`${css.mobileMenu} ${isOpen ? css.open : ""}`}>
       <Image
-        src="/close_icon.svg"
+        src="/icon/close_icon.svg"
         alt="close-Menu"
         width={32}
         height={32}
