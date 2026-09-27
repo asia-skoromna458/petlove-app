@@ -4,10 +4,14 @@ import css from "./Header.module.css";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 export default function Header() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   return (
-    <div className={css.container}>
+    <div className={`${css.container} ${isHome ? css.homeContainer : ""}`}>
       <Link href="/">
         <p className={css.logo}>
           petl
@@ -16,24 +20,39 @@ export default function Header() {
             alt="Petlove logo"
             width={14}
             height={12}
+            className={isHome ? css.whiteIcon : ""}
           />
           ve
         </p>
       </Link>
       <nav className={css.desktopNav}>
-        <Link href="/news" className={css.navLink}>
+        <Link
+          href="/news"
+          className={`${css.navLink} ? ${isHome ? css.homeNavLink : ""}`}
+        >
           News
         </Link>
-        <Link href="/notices" className={css.navLink}>
+        <Link
+          href="/notices"
+          className={`${css.navLink} ? ${isHome ? css.homeNavLink : ""}`}
+        >
           Find pet
         </Link>
-        <Link href="/friends" className={css.navLink}>
+        <Link
+          href="/friends"
+          className={`${css.navLink} ? ${isHome ? css.homeNavLink : ""}`}
+        >
           Our friends
         </Link>
       </nav>
       <div className={css.rightGroup}>
         <div className={css.desktopAction}>
-          <button className={css.loginBtn}>Log In</button>
+          <button
+            className={`${css.loginBtn} ? ${isHome ? css.homeloginBth : ""}`}
+            onClick={() => router.push("/login")}
+          >
+            Log In
+          </button>
           <button className={css.registrationBtn}>Registration</button>
         </div>
 
@@ -47,6 +66,7 @@ export default function Header() {
             width={32}
             height={32}
             alt="burger-menu"
+            className={isHome ? css.whiteIcon : ""}
           />
         </button>
       </div>

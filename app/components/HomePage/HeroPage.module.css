@@ -1,5 +1,7 @@
 .container {
-  padding: 10px 20px 0 10px;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .heroTitle {
   font-weight: 700;
@@ -7,7 +9,6 @@
   line-height: 0.96;
   letter-spacing: -0.03em;
   color: #fff;
-  padding-top: 118px;
 }
 .titleSpan {
   color: rgba(255, 255, 255, 0.4);
@@ -15,22 +16,60 @@
 .heroText {
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.28571;
+  line-height: 1.29;
   letter-spacing: -0.02em;
   color: #fff;
+  margin-top: 24px;
 }
 .titleContainer {
   position: relative;
   z-index: 1;
-
-  margin-top: -60px;
-
+  margin-top: -68px;
   border-radius: 30px;
   min-width: 335px;
   min-height: 390px;
   background: #f6b83d;
+  padding: 118px 20px 50px 20px;
 }
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 402px;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
 .heroImage {
-  width: 335px;
-  height: 402px;
+  object-fit: cover;
+  object-position: center top;
+}
+@media (min-width: 768px) {
+  .container {
+    padding: 16px 32px;
+  }
+  .titleContainer {
+    margin-top: -80px;
+    padding: 178px 32px 44px 32px;
+    min-width: 704px;
+    min-height: 496px;
+  }
+  .heroTitle {
+    font-size: 80px;
+  }
+  .heroText {
+    margin-top: 32px;
+    margin-left: 417px;
+    font-size: 18px;
+    line-height: 1.22;
+    /* щось не так. погратися з розмірами */
+  }
+}
+@media (min-width: 1440px) {
+  .titleContainer {
+    margin-top: -116px;
+    padding: 178px 64px 32px 64px;
+    width: 100%;
+    min-height: 384px;
+    box-sizing: border-box;
+  }
 }

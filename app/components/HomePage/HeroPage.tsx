@@ -14,13 +14,15 @@ export default function HeroPage() {
           life with immeasurable joy and tenderness.
         </p>
       </div>
-      <Image
-        className={css.heroImage}
-        src="/image/hero-image.jpg"
-        alt="Hero image"
-        width={670}
-        height={804}
-      ></Image>
+      <div className={css.imageWrapper}>
+        <Image
+          src="/image/hero-image.jpg"
+          alt="Hero image"
+          fill
+          sizes="100vw"
+          className={css.heroImage}
+        />
+      </div>
     </main>
   );
 }

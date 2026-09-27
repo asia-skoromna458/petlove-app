@@ -18,7 +18,14 @@
   margin-left: 16px;
   background: transparent;
 }
-
+.homeContainer {
+  background: transparent;
+  padding: 28px 40px 0 40px;
+  color: #fff;
+}
+.whiteIcon {
+  filter: brightness(0) invert(1);
+}
 .mobileMenu {
   position: fixed;
   top: 0;
@@ -95,6 +102,9 @@
   text-transform: uppercase;
   color: #f6b83d;
 }
+.homeloginBth {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
 
 .desktopNav {
   display: none;
@@ -124,6 +134,9 @@
     display: flex;
     gap: 8px;
   }
+  .homeContainer {
+    padding: 39px 64px 0 64px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -145,6 +158,14 @@
   .desktopNav {
     display: flex;
     gap: 10px;
+  }
+  .homeNavLink {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
+  .homeContainer {
+    padding-left: 96px;
+    padding-right: 96px;
   }
 }
 
