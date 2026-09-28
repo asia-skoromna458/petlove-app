@@ -57,19 +57,47 @@
     font-size: 80px;
   }
   .heroText {
-    margin-top: 32px;
-    margin-left: 417px;
+    width: 255px;
+    margin-top: 31px;
+    margin-left: auto;
     font-size: 18px;
     line-height: 1.22;
-    /* щось не так. погратися з розмірами */
+  }
+  .imageWrapper {
+    width: 100%;
+    height: 496px;
   }
 }
 @media (min-width: 1440px) {
   .titleContainer {
     margin-top: -116px;
-    padding: 178px 64px 32px 64px;
+    padding: 178px 64px 32px;
     width: 100%;
     min-height: 384px;
     box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .heroTitle {
+    font-size: 90px;
+    max-width: 760px;
+  }
+
+  .heroText {
+    margin: 0;
+    width: 300px;
+    flex-shrink: 0;
+  }
+  .imageWrapper {
+    min-width: 1216px;
+    margin: 0 auto;
+  }
+
+  .heroImage {
+    object-fit: cover;
+    object-position: center;
+    /* погратися з картинкою */
   }
 }
