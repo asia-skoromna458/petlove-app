@@ -1,0 +1,110 @@
+.container {
+  margin: 23px 20px 20px 20px;
+}
+.imageWrapper {
+  border-radius: 30px;
+  overflow: hidden;
+}
+.formContainer {
+  background: #fff;
+  border-radius: 30px;
+  padding: 60px 20px;
+  margin-top: 10px;
+}
+.fromTitle {
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+.formText {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.input {
+  border: 1px solid rgba(38, 38, 38, 0.15);
+  border-radius: 30px;
+  width: 295px;
+  height: 42px;
+  padding: 12px 0 12px 12px;
+  font-size: 14px;
+  letter-spacing: -0.03em;
+}
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.inputWrapper {
+  position: relative;
+}
+.eyeIcon,
+.checkIcon {
+  position: absolute;
+  top: 21px;
+  transform: translateY(-50%);
+}
+
+.eyeIcon {
+  right: 12px;
+}
+
+.checkIcon {
+  right: 38px;
+}
+.crossIcon {
+  position: absolute;
+  right: 12px;
+  top: 21px;
+  transform: translateY(-50%);
+}
+.btn {
+  background: #f6b83d;
+  border-radius: 30px;
+  padding: 12px 0;
+  width: 295px;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.loginRegisterText {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: -0.03em;
+  color: rgba(38, 38, 38, 0.5);
+  text-align: center;
+}
+.loginRegisterLink {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #f6b83d;
+}
+.errorMessage {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #ef2447;
+  margin-left: 12px;
+}
+.successMessage {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #08aa83;
+  margin-left: 12px;
+}

@@ -53,7 +53,12 @@ export default function Header() {
           >
             Log In
           </button>
-          <button className={css.registrationBtn}>Registration</button>
+          <button
+            className={css.registrationBtn}
+            onClick={() => router.push("/registration")}
+          >
+            Registration
+          </button>
         </div>
 
         <button

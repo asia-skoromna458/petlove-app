@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import css from "../Header.module.css";
 import Image from "next/image";
 
@@ -9,6 +10,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const handleClick = () => {
     onClose();
   };
+  const router = useRouter();
+
   return (
     <div className={`${css.mobileMenu} ${isOpen ? css.open : ""}`}>
       <Image
@@ -31,8 +34,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </a>
       </nav>
       <div className={css.action}>
-        <button className={css.loginBtn}>Log In</button>
-        <button className={css.registrationBtn}>Registration</button>
+        <button className={css.loginBtn} onClick={() => router.push("/login")}>
+          Log In
+        </button>
+        <button
+          className={css.registrationBtn}
+          onClick={() => router.push("/registration")}
+        >
+          Registration
+        </button>
       </div>
     </div>
   );
