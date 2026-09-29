@@ -1,51 +1,60 @@
 "use client";
-import Image from "next/image";
+import Title from "@/app/components/ui/title/title";
 import css from "../page.module.css";
-import Link from "next/link";
 import ImageBlock from "@/app/components/ui/ImageBlock/ImageBlock";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LoginFormSchema } from "@/app/lib/validation/shema";
-import Title from "@/app/components/ui/title/title";
+import { RegisterFormSchema } from "@/app/lib/validation/shema";
+import Image from "next/image";
 import { useState } from "react";
-interface LoginFormvalues {
+interface RegisterFormValues {
+  name: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }
-
-export default function LoginPage() {
+export default function RegisterPage() {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<LoginFormvalues>({
-    resolver: yupResolver(LoginFormSchema),
+  } = useForm<RegisterFormValues>({
+    resolver: yupResolver(RegisterFormSchema),
     mode: "onSubmit",
   });
-  const onSubmit = (data: LoginFormvalues) => {
+  const onSubmit = (data: RegisterFormValues) => {
     console.log(data);
   };
-  // додати тост якщо не вдалося залогінитись
   const password = watch("password");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
     <div className={css.container}>
       <div className={css.imageWrapper}>
         <ImageBlock
-          src="/image/login-image.jpg"
-          tabletSrc="/image/login-tablet-image.jpg"
-          alt="Login image"
+          src="/image/registration-image.jpg"
+          tabletSrc="/image/register-tablet-image.jpg"
+          alt="Register image"
           width={335}
           height={280}
         />
       </div>
-      <div className={css.formContainerLogIn}>
-        <Title>Log in</Title>
+      <div className={css.formContainerRegister}>
+        <Title>Registration</Title>
         <p className={css.formText}>
-          Welcome! Please enter your credentials to login to the platform:
+          Thank you for your interest in our platform.
         </p>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+          <label className={css.inputWrapper}>
+            <input
+              type="text"
+              placeholder="Name"
+              className={css.input}
+              {...register("name")}
+            />
+          </label>
           <label className={css.inputWrapper}>
             <input
               type="email"
@@ -66,7 +75,7 @@ export default function LoginPage() {
           </label>
           <label className={css.inputWrapper}>
             <input
-              type={showPassword ? "text" : "password"}
+              type="password"
               placeholder="Password"
               className={`${css.input} ${
                 errors.password
@@ -114,16 +123,48 @@ export default function LoginPage() {
               <p className={css.errorMessage}>{errors.password.message}</p>
             )}
           </label>
-          <button className={css.LogInBtn} type="submit">
-            log in
+          <label className={css.inputWrapper}>
+            <input
+              type="password"
+              placeholder="Confirm password"
+              className={css.input}
+              {...register("confirmPassword")}
+            />
+            {showConfirmPassword ? (
+              <Image
+                src="/icon/eye-on-icon.svg"
+                alt="eye-icon"
+                width={18}
+                height={18}
+                className={css.eyeIcon}
+                onClick={() => setShowConfirmPassword(false)}
+              />
+            ) : (
+              <Image
+                src="/icon/eye-off-icon.svg"
+                alt="eye-icon"
+                width={18}
+                height={18}
+                className={css.eyeIcon}
+                onClick={() => setShowConfirmPassword(true)}
+              />
+            )}
+            {errors.confirmPassword && (
+              <p className={css.errorMessage}>
+                {errors.confirmPassword.message}
+              </p>
+            )}
+          </label>
+          <button type="submit" className={css.RegisterBtn}>
+            Registration
           </button>
+          <p className={css.loginRegisterText}>
+            Already have an account?
+            <Link href="/login" className={css.loginRegisterLink}>
+              Login
+            </Link>
+          </p>
         </form>
-        <p className={css.loginRegisterText}>
-          Don’t have an account?
-          <Link href="/register" className={css.loginRegisterLink}>
-            Register
-          </Link>
-        </p>
       </div>
     </div>
   );

@@ -1,23 +1,31 @@
 .container {
   margin: 23px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input:focus {
+  outline: none;
 }
 .imageWrapper {
   border-radius: 30px;
   overflow: hidden;
 }
-.formContainer {
+.formContainerLogIn {
   background: #fff;
   border-radius: 30px;
   padding: 60px 20px;
   margin-top: 10px;
 }
-.fromTitle {
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  margin-bottom: 12px;
+.formContainerRegister {
+  background: #fff;
+  border-radius: 30px;
+  padding: 20px;
+  margin-top: 10px;
 }
+
 .formText {
+  margin-top: 12px;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.29;
@@ -39,7 +47,6 @@
   justify-content: center;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 40px;
 }
 .inputWrapper {
   position: relative;
@@ -53,6 +60,7 @@
 
 .eyeIcon {
   right: 12px;
+  cursor: pointer;
 }
 
 .checkIcon {
@@ -64,7 +72,8 @@
   top: 21px;
   transform: translateY(-50%);
 }
-.btn {
+.LogInBtn,
+.RegisterBtn {
   background: #f6b83d;
   border-radius: 30px;
   padding: 12px 0;
@@ -78,6 +87,15 @@
   color: #fff;
   margin-bottom: 12px;
 }
+
+.LogInBtn {
+  margin-top: 40px;
+}
+
+.RegisterBtn {
+  margin-top: 24px;
+}
+
 .loginRegisterText {
   font-weight: 500;
   font-size: 12px;
@@ -107,4 +125,28 @@
   letter-spacing: -0.03em;
   color: #08aa83;
   margin-left: 12px;
+}
+.inputSuccess {
+  border: 1px solid #08aa83;
+}
+
+.inputError {
+  border: 1px solid #ef2447;
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin: 0 32px 32px 32px;
+  }
+  .imageWrapper {
+    border-radius: 60px;
+    width: 100%;
+    height: 302px;
+  }
+
+  .imageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

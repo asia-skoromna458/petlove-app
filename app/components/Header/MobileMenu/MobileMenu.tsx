@@ -39,7 +39,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </button>
         <button
           className={css.registrationBtn}
-          onClick={() => router.push("/registration")}
+          onClick={() => router.push("/register")}
         >
           Registration
         </button>
