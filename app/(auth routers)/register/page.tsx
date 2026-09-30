@@ -1,3 +1,4 @@
+// добавити карточки на фоото
 "use client";
 import Title from "@/app/components/ui/title/title";
 import css from "../page.module.css";
@@ -51,9 +52,12 @@ export default function RegisterPage() {
             <input
               type="text"
               placeholder="Name"
-              className={css.input}
+              className={`${css.input} ${errors.name ? css.inputError : ""}`}
               {...register("name")}
             />
+            {errors.name && (
+              <p className={css.errorMessage}>{errors.name.message}</p>
+            )}
           </label>
           <label className={css.inputWrapper}>
             <input
@@ -75,7 +79,7 @@ export default function RegisterPage() {
           </label>
           <label className={css.inputWrapper}>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               className={`${css.input} ${
                 errors.password
@@ -125,7 +129,7 @@ export default function RegisterPage() {
           </label>
           <label className={css.inputWrapper}>
             <input
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm password"
               className={css.input}
               {...register("confirmPassword")}

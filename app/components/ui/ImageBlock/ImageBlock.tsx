@@ -21,7 +21,14 @@ export default function ImageBlock({
         srcSet={tabletSrc}
       />
 
-      <Image src={src} alt={alt} width={width} height={height} />
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        sizes="(min-width: 1440px) 50vw, 100vw"
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      />
     </picture>
   );
 }
