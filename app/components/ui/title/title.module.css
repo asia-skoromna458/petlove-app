@@ -1,10 +1,12 @@
-.title {
+.container {
   font-size: 28px;
   line-height: 1;
   letter-spacing: -0.04em;
 }
+
 @media (min-width: 768px) {
-  .title {
+  .container {
     font-size: 54px;
+    letter-spacing: -0.03em;
   }
 }

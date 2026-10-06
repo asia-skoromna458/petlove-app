@@ -6,170 +6,221 @@
   position: relative;
   z-index: 10;
 }
+
 .logo {
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
   letter-spacing: -0.04em;
 }
+
 .burgerMenu {
   border: none;
-  background: #f9f9f9;
-  margin-left: 16px;
   background: transparent;
+  margin-left: 16px;
 }
+
 .homeContainer {
   background: transparent;
   padding: 28px 40px 0 40px;
   color: #fff;
 }
+
 .whiteIcon {
   filter: brightness(0) invert(1);
 }
+
+.blackIcon {
+  filter: brightness(0);
+}
+
+/* Navigation */
+
+.navLink {
+  padding: 15px 20px;
+  border: 1px solid rgba(38, 38, 38, 0.15);
+  border-radius: 30px;
+}
+
+.activeLink {
+  border-color: #f6b83d;
+}
+
+/* Mobile menu */
+
 .mobileMenu {
   position: fixed;
   top: 0;
   right: 0;
   width: 50%;
   height: 100%;
-  background: #fff;
+  background: #f6b83d;
   transform: translateX(100%);
   transition: transform 300ms ease;
   z-index: 1000;
 }
+
 .mobileMenu.open {
   transform: translateX(0);
-  padding: 28px 20px 40px 20px;
+  padding: 28px 20px 40px;
   display: flex;
   flex-direction: column;
 }
+
+.mobileMenuHome {
+  background-color: #fff;
+}
+
 .closeIcon {
   position: absolute;
   top: 20px;
   right: 20px;
 }
+
 .navigation {
   margin-top: 214px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
 }
-.navLink {
-  border: 1px solid rgba(38, 38, 38, 0.15);
-  border-radius: 30px;
+
+.mobileNavLink {
   width: 119px;
   height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.03em;
-  color: #262626;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #fff;
 }
+
+.mobileNavLink:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mobileMenuLink {
+  border-color: rgba(38, 38, 38, 0.15);
+  color: #262626;
+}
+
+.mobileMenuLink:hover {
+  border-color: rgba(38, 38, 38, 0.4);
+}
+
+/* Mobile menu buttons */
+
 .action {
   margin-top: 280px;
   display: flex;
-  gap: 8px;
   flex-direction: column;
   align-items: center;
+  gap: 8px;
 }
 
 .loginBtn {
-  border-radius: 30px;
   width: 178px;
   height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  background: #f6b83d;
+  color: #fff;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: #fff;
-  background: #f6b83d;
-  border: none;
 }
+
 .registrationBtn {
-  border-radius: 30px;
   width: 178px;
   height: 42px;
-  background: #fff4df;
   border: none;
+  border-radius: 30px;
+  background: #fff4df;
+  color: #f6b83d;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: #f6b83d;
 }
-.homeloginBth {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
+
+/* Desktop */
 
 .desktopNav {
   display: none;
 }
+
 .desktopAction {
   display: none;
-}
-@media (min-width: 768px) {
-  .container {
-    padding: 32px 32px;
-  }
-  .action {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-  .loginBtn {
-    width: 119px;
-    height: 50px;
-  }
-  .registrationBtn {
-    border-radius: 30px;
-    width: 149px;
-    height: 50px;
-  }
-  .desktopAction {
-    display: flex;
-    gap: 8px;
-  }
-  .homeContainer {
-    padding: 39px 64px 0 64px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .container {
-    padding: 32px 64px 32px 64px;
-  }
-  .burgerMenu {
-    display: none;
-  }
-  .navigation {
-    display: flex;
-    gap: 10px;
-  }
-  .navLink {
-    border: 1px solid rgba(38, 38, 38, 0.15);
-    border-radius: 30px;
-    padding: 15px 20px;
-  }
-  .desktopNav {
-    display: flex;
-    gap: 10px;
-  }
-  .homeNavLink {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #fff;
-  }
-  .homeContainer {
-    padding-left: 96px;
-    padding-right: 96px;
-  }
 }
 
 .rightGroup {
   display: flex;
   gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+
+  .homeContainer {
+    padding: 39px 64px 0;
+  }
+
+  .action {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loginBtn {
+    width: 119px;
+    height: 50px;
+  }
+
+  .registrationBtn {
+    width: 149px;
+    height: 50px;
+  }
+
+  .desktopAction {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    padding: 32px 64px;
+  }
+
+  .homeContainer {
+    padding-left: 96px;
+    padding-right: 96px;
+  }
+
+  .burgerMenu {
+    display: none;
+  }
+
+  .desktopNav {
+    display: flex;
+    gap: 10px;
+  }
+
+  .navLink {
+    padding: 15px 20px;
+  }
+
+  .homeNavLink {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
 }

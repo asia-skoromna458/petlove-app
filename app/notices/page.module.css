@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 22px 20px 88px 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 53px 32px 88px 32px;
+  }
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    padding-top: 64px;
+    max-width: 1233px;
+    margin: 0 auto;
+  }
+  .list {
+    grid-template-columns: repeat(3, 363px);
+    row-gap: 32px;
+    column-gap: 40px;
+  }
+}

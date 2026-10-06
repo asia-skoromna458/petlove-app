@@ -28,19 +28,27 @@ export default function Header() {
       <nav className={css.desktopNav}>
         <Link
           href="/news"
-          className={`${css.navLink} ? ${isHome ? css.homeNavLink : ""}`}
+          className={`${css.navLink} ${
+            isHome ? css.homeNavLink : ""
+          } ${pathname === "/news" ? css.activeLink : ""}`}
         >
           News
         </Link>
+
         <Link
           href="/notices"
-          className={`${css.navLink} ? ${isHome ? css.homeNavLink : ""}`}
+          className={`${css.navLink} ${
+            isHome ? css.homeNavLink : ""
+          } ${pathname === "/notices" ? css.activeLink : ""}`}
         >
           Find pet
         </Link>
+
         <Link
           href="/friends"
-          className={`${css.navLink} ? ${isHome ? css.homeNavLink : ""}`}
+          className={`${css.navLink} ${
+            isHome ? css.homeNavLink : ""
+          } ${pathname === "/friends" ? css.activeLink : ""}`}
         >
           Our friends
         </Link>
@@ -75,7 +83,11 @@ export default function Header() {
           />
         </button>
       </div>
-      <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <MobileMenu
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        isHome={isHome}
+      />
     </div>
   );
 }
