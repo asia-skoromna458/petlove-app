@@ -5,6 +5,7 @@ import { Notice } from "../types/notices";
 import NoticeCard from "../components/NoticeCard/NoticeCard";
 import Title from "../components/ui/title/title";
 import css from "./page.module.css";
+import Filter from "../components/Filter/Filter";
 
 export default function NoticesPageClient() {
   const [notice, setNotice] = useState<Notice[]>([]);
@@ -20,6 +21,7 @@ export default function NoticesPageClient() {
   return (
     <main className={css.container}>
       <Title>Find your favorite pet</Title>
+      <Filter />
       <ul className={css.list}>
         {notice.map((notice) => (
           <li key={notice._id}>

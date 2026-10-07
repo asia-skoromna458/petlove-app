@@ -1,0 +1,26 @@
+.label {
+  position: relative;
+  display: inline-block;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.searchInput {
+  border-radius: 30px;
+  padding: 12px 40px 12px 12px;
+  border: none;
+  width: 295px;
+  height: 42px;
+}
+.searchInput::placeholder {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.03em;
+  color: #262626;
+}
