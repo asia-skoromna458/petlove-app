@@ -40,7 +40,7 @@ export default function FriendCard({ friend }: FriendProps) {
             {friend.address ? (
               <a
                 href={friend.addressUrl}
-                target="blank"
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 {friend.address}
