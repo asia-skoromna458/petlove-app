@@ -21,3 +21,12 @@ export interface GetAllNoticesResponse {
   totalPages: number;
   results: Notice[];
 }
+export interface NoticeParams {
+  page: number;
+  limit: number;
+  category?: string;
+  species?: string;
+  sex?: string;
+  keyword?: string;
+  locationId?: string;
+}

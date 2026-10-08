@@ -1,9 +1,9 @@
-import { GetAllNoticesResponse } from "../types/notices";
+import { GetAllNoticesResponse, NoticeParams } from "../types/notices";
 import api from "./api";
 
-export const getAllNotices = async (page: number, limit: number) => {
+export const getAllNotices = async (params: NoticeParams) => {
   const res = await api.get<GetAllNoticesResponse>("/notices", {
-    params: { page, limit },
+    params,
   });
   return res.data;
 };

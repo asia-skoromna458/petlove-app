@@ -3,6 +3,7 @@ import Image from "next/image";
 import Select from "react-select";
 import SearchField from "../ui/SearchField/SearchField";
 import css from "./Filter.module.css";
+import { useState } from "react";
 
 const CategoryOptions = [
   { value: "", label: "Show all" },
@@ -56,11 +57,26 @@ const locationComponent = {
     <Image src="/icon/search-icon.svg" alt="search" width={18} height={18} />
   ),
 };
+interface FilterProps {
+  onFilterChange: (filters: {
+    category?: string;
+    species?: string;
+    sex?: string;
+    keyword?: string;
+  }) => void;
+}
 
-export default function Filter() {
+export default function Filter({ onFilterChange }: FilterProps) {
+  const [keyword, setKeyword] = useState("");
   return (
     <div className={css.container}>
-      <SearchField />
+      <SearchField
+        value={keyword}
+        onChange={(value) => {
+          setKeyword(value);
+          onFilterChange({ keyword: value });
+        }}
+      />
       <div className={css.selectRow}>
         <Select
           unstyled
@@ -70,6 +86,9 @@ export default function Filter() {
           className={`${css.select} ${css.smallSelect}`}
           classNames={selectClassNames}
           components={selectComponents}
+          onChange={(option) => {
+            onFilterChange({ category: option?.value || undefined });
+          }}
         />
         <Select
           unstyled
@@ -79,6 +98,9 @@ export default function Filter() {
           className={`${css.select} ${css.smallSelect} ${css.genderSelect}`}
           classNames={selectClassNames}
           components={selectComponents}
+          onChange={(option) => {
+            onFilterChange({ sex: option?.value || undefined });
+          }}
         />
       </div>
       <Select
@@ -89,6 +111,9 @@ export default function Filter() {
         className={`${css.select} ${css.bigSelect} ${css.selectByType}`}
         classNames={selectClassNames}
         components={selectComponents}
+        onChange={(option) => {
+          onFilterChange({ species: option?.value || undefined });
+        }}
       />
       <Select
         unstyled

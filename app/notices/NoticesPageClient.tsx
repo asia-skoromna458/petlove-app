@@ -12,20 +12,28 @@ export default function NoticesPageClient() {
   const [notice, setNotice] = useState<Notice[]>([]);
   const [page, setPage] = useState(1);
   const [totalpages, setTotalPages] = useState(0);
+  const [filter, setFilter] = useState({ category: "", species: "", sex: "" });
   useEffect(() => {
     const GetNotice = async () => {
-      const data = await getAllNotices(page, 6);
+      const data = await getAllNotices({ page, limit: 6, ...filter });
       setNotice(data.results);
       setTotalPages(data.totalPages);
     };
 
     GetNotice();
-  }, [page]);
+  }, [page, filter]);
+  const handleFilterChange = (newFilter: {
+    category?: string;
+    species?: string;
+    sex?: string;
+  }) => {
+    setFilter((prev) => ({ ...prev, ...newFilter }));
+  };
 
   return (
     <main className={css.container}>
       <Title>Find your favorite pet</Title>
-      <Filter />
+      <Filter onFilterChange={handleFilterChange} />
       <ul className={css.list}>
         {notice.map((notice) => (
           <li key={notice._id}>
