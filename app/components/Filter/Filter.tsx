@@ -50,6 +50,12 @@ const selectComponents = {
     <Image src="/icon/selecct-icon.svg" alt="" width={11} height={6} />
   ),
 };
+const locationComponent = {
+  IndicatorSeparator: null,
+  DropdownIndicator: () => (
+    <Image src="/icon/search-icon.svg" alt="search" width={18} height={18} />
+  ),
+};
 
 export default function Filter() {
   return (
@@ -70,7 +76,7 @@ export default function Filter() {
           options={GenderOptions}
           placeholder="By gender"
           instanceId="gender-select"
-          className={`${css.select} ${css.smallSelect}`}
+          className={`${css.select} ${css.smallSelect} ${css.genderSelect}`}
           classNames={selectClassNames}
           components={selectComponents}
         />
@@ -80,10 +86,64 @@ export default function Filter() {
         options={TypeOptions}
         placeholder="By type"
         instanceId="type-select"
-        className={`${css.select} ${css.bigSelect}`}
+        className={`${css.select} ${css.bigSelect} ${css.selectByType}`}
         classNames={selectClassNames}
         components={selectComponents}
       />
+      <Select
+        unstyled
+        placeholder="Location"
+        className={`${css.select} ${css.bigSelect} ${css.selectLocation}`}
+        classNames={selectClassNames}
+        components={locationComponent}
+      />
+      <hr className={css.divider} />
+      <ul className={css.sortList}>
+        <li className={css.sortItem}>
+          <input type="radio" name="sort" />
+          <p>Popular</p>
+          <Image
+            src="/icon/close_icon.svg"
+            alt="cheked"
+            width={18}
+            height={18}
+            className={css.closeIcon}
+          />
+        </li>
+        <li className={css.sortItem}>
+          <input type="radio" name="sort" />
+          <p>Unpopular</p>
+          <Image
+            src="/icon/close_icon.svg"
+            alt="cheked"
+            width={18}
+            height={18}
+            className={css.closeIcon}
+          />
+        </li>
+        <li className={css.sortItem}>
+          <input type="radio" name="sort" />
+          <p>Cheap</p>
+          <Image
+            src="/icon/close_icon.svg"
+            alt="cheked"
+            width={18}
+            height={18}
+            className={css.closeIcon}
+          />
+        </li>
+        <li className={css.sortItem}>
+          <input type="radio" name="sort" />
+          <p>Expensive</p>
+          <Image
+            src="/icon/close_icon.svg"
+            alt="cheked"
+            width={18}
+            height={18}
+            className={css.closeIcon}
+          />
+        </li>
+      </ul>
     </div>
   );
 }

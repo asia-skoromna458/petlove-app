@@ -25,12 +25,13 @@
 @media (min-width: 1440px) {
   .container {
     padding-top: 64px;
-    max-width: 1233px;
+    max-width: 1280px;
     margin: 0 auto;
   }
   .list {
     grid-template-columns: repeat(3, 363px);
     row-gap: 32px;
     column-gap: 40px;
+    justify-content: center;
   }
 }

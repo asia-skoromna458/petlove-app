@@ -16,11 +16,24 @@
   border: none;
   width: 295px;
   height: 42px;
-}
-.searchInput::placeholder {
+  font-family: inherit;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.28571;
+  line-height: 1.29;
   letter-spacing: -0.03em;
   color: #262626;
+}
+
+.searchInput::placeholder {
+  color: #262626;
+}
+
+@media (min-width: 768px) {
+  .searchInput {
+    width: 265px;
+    padding: 14px;
+    font-size: 16px;
+    line-height: 1.25;
+    height: 48px;
+  }
 }

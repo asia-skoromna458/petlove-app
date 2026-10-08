@@ -20,7 +20,7 @@ export default function Header() {
             alt="Petlove logo"
             width={14}
             height={12}
-            className={isHome ? css.whiteIcon : ""}
+            className={`${css.icon} ${isHome ? css.whiteIcon : ""}`}
           />
           ve
         </p>
