@@ -4,11 +4,16 @@ import css from "./SearchField.module.css";
 interface SearchFieldProps {
   value: string;
   onChange: (value: string) => void;
+  className?: string;
 }
-export default function SearchField({ value, onChange }: SearchFieldProps) {
+export default function SearchField({
+  value,
+  onChange,
+  className,
+}: SearchFieldProps) {
   return (
     <>
-      <label className={css.label}>
+      <label className={`${css.label} ${className ?? ""}`}>
         <input
           type="text"
           placeholder="Search"

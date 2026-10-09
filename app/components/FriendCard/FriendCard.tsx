@@ -9,7 +9,7 @@ interface FriendProps {
 export default function FriendCard({ friend }: FriendProps) {
   const workDay = friend.workDays?.find((day) => day.isOpen);
   return (
-    <article>
+    <article className={css.wrapper}>
       {workDay ? (
         <span>
           {workDay.from} - {workDay.to}
