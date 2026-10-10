@@ -19,7 +19,7 @@ export default function FriendsPageClient() {
   return (
     <main className={css.container}>
       <Title>Our friends</Title>
-      <ul>
+      <ul className={css.list}>
         {friend.map((friend) => (
           <li key={friend._id}>
             <FriendCard friend={friend} />

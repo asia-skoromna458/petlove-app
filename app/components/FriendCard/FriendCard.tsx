@@ -11,53 +11,55 @@ export default function FriendCard({ friend }: FriendProps) {
   return (
     <article className={css.wrapper}>
       {workDay ? (
-        <span>
+        <span className={css.spanWorkDay}>
           {workDay.from} - {workDay.to}
         </span>
       ) : (
-        <span>Day and night</span>
+        <span className={css.spanWorkDay}>Day and night</span>
       )}
-      <Image
-        src={friend.imageUrl}
-        alt={friend.title}
-        width={90}
-        height={90}
-        className={css.image}
-      />
       <div className={css.infoWrapper}>
-        <h3>{friend.title}</h3>
-        <ul>
-          <li>
-            Email:{" "}
-            {friend.email ? (
-              <a href={`mailto:${friend.email}`}>{friend.email}</a>
-            ) : (
-              "Only phone or website"
-            )}
-          </li>
-          <li>
-            Address:{" "}
-            {friend.address ? (
-              <a
-                href={friend.addressUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {friend.address}
-              </a>
-            ) : (
-              "Website only"
-            )}
-          </li>
-          <li>
-            Phone{" "}
-            {friend.phone ? (
-              <a href={`tel: ${friend.phone}`}> {friend.phone}</a>
-            ) : (
-              "Email only"
-            )}
-          </li>
-        </ul>
+        <Image
+          src={friend.imageUrl}
+          alt={friend.title}
+          width={80}
+          height={80}
+          className={css.image}
+        />
+        <div className={css.contactInfo}>
+          <h3 className={css.title}>{friend.title}</h3>
+          <ul className={css.list}>
+            <li className={css.listItem}>
+              <span className={css.span}>Email: </span>
+              {friend.email ? (
+                <a href={`mailto:${friend.email}`}>{friend.email}</a>
+              ) : (
+                "Only phone or website"
+              )}
+            </li>
+            <li className={css.listItem}>
+              <span className={css.span}>Address: </span>
+              {friend.address ? (
+                <a
+                  href={friend.addressUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {friend.address}
+                </a>
+              ) : (
+                "Website only"
+              )}
+            </li>
+            <li className={css.listItem}>
+              <span className={css.span}> Phone: </span>
+              {friend.phone ? (
+                <a href={`tel: ${friend.phone}`}> {friend.phone}</a>
+              ) : (
+                "Email only"
+              )}
+            </li>
+          </ul>
+        </div>
       </div>
     </article>
   );
