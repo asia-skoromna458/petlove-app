@@ -17,7 +17,6 @@
 .burgerMenu {
   border: none;
   background: transparent;
-  margin-left: 16px;
 }
 
 .homeContainer {
@@ -45,7 +44,29 @@
 .activeLink {
   border-color: #f6b83d;
 }
+.userWrapper {
+  width: 40px;
+  height: 40px;
+  background: #fff4df;
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+  justify-content: center;
+}
+.userMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 
+.userName {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #262626;
+}
 /* Mobile menu */
 
 .mobileMenu {
@@ -116,7 +137,7 @@
 /* Mobile menu buttons */
 
 .action {
-  margin-top: 280px;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,8 +157,12 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
 }
-
-.registrationBtn {
+.logOutBtnTablet,
+.userName {
+  display: none;
+}
+.registrationBtn,
+.logOutBtn {
   width: 178px;
   height: 42px;
   border: none;
@@ -185,7 +210,8 @@
     height: 50px;
   }
 
-  .registrationBtn {
+  .registrationBtn,
+  .logOutBtn {
     width: 149px;
     height: 50px;
   }
@@ -194,12 +220,53 @@
     display: flex;
     gap: 8px;
   }
+
   .logo {
     font-size: 28px;
   }
+
   .icon {
     width: 19px;
     height: 17px;
+  }
+
+  .userWrapper {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logOutBtnTablet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 136px;
+    height: 50px;
+    border: none;
+    border-radius: 30px;
+    background: #f6b83d;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .userName {
+    display: block;
+  }
+
+  .profileLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .userIcon {
+    width: 24px;
+    height: 24px;
+  }
+  .homeUserName {
+    color: #fff;
   }
 }
 

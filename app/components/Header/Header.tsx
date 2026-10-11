@@ -5,11 +5,14 @@ import { useState } from "react";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useAuthStore } from "@/app/lib/store/authStore";
 export default function Header() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isAuthenticated = useAuthStore((state) => !!state.token);
+  const userName = useAuthStore((state) => state.user?.name);
   return (
     <div className={`${css.container} ${isHome ? css.homeContainer : ""}`}>
       <Link href="/">
@@ -55,20 +58,50 @@ export default function Header() {
       </nav>
       <div className={css.rightGroup}>
         <div className={css.desktopAction}>
-          <button
-            className={`${css.loginBtn} ? ${isHome ? css.homeloginBth : ""}`}
-            onClick={() => router.push("/login")}
-          >
-            Log In
-          </button>
-          <button
-            className={css.registrationBtn}
-            onClick={() => router.push("/register")}
-          >
-            Registration
-          </button>
+          {!isAuthenticated && (
+            <>
+              <button
+                className={`${css.loginBtn} ? ${isHome ? css.homeloginBth : ""}`}
+                onClick={() => router.push("/login")}
+              >
+                Log In
+              </button>
+              <button
+                className={css.registrationBtn}
+                onClick={() => router.push("/register")}
+              >
+                Registration
+              </button>
+            </>
+          )}
         </div>
-
+        {isAuthenticated && (
+          <div className={css.userMenu}>
+            {!isHome && (
+              <button className={css.logOutBtnTablet}>Log out</button>
+            )}
+            <Link
+              href="/profile"
+              aria-label="Open profile"
+              className={css.profileLink}
+            >
+              <div className={css.userWrapper}>
+                <Image
+                  src="/icon/user-icons/user-or-icon.svg"
+                  alt=""
+                  width={20}
+                  height={20}
+                  className={css.userIcon}
+                />
+              </div>
+              <span
+                className={`${css.userName} ${isHome ? css.homeUserName : ""}`}
+              >
+                {userName}
+              </span>
+            </Link>
+          </div>
+        )}
         <button
           aria-label="Open menu"
           className={css.burgerMenu}

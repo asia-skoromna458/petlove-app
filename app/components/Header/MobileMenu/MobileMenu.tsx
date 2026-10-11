@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import css from "../Header.module.css";
 import Image from "next/image";
+import { useAuthStore } from "@/app/lib/store/authStore";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export default function MobileMenu({
     onClose();
   };
   const router = useRouter();
+  const isAuthenticated = useAuthStore((state) => !!state.token);
 
   return (
     <div
@@ -50,15 +52,29 @@ export default function MobileMenu({
         </a>
       </nav>
       <div className={css.action}>
-        <button className={css.loginBtn} onClick={() => router.push("/login")}>
-          Log In
-        </button>
-        <button
-          className={css.registrationBtn}
-          onClick={() => router.push("/register")}
-        >
-          Registration
-        </button>
+        {isAuthenticated ? (
+          <button
+            className={css.logOutBtn}
+            onClick={() => router.push("/profile")}
+          >
+            Log out
+          </button>
+        ) : (
+          <>
+            <button
+              className={css.loginBtn}
+              onClick={() => router.push("/login")}
+            >
+              Log In
+            </button>
+            <button
+              className={css.registrationBtn}
+              onClick={() => router.push("/register")}
+            >
+              Registration
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
