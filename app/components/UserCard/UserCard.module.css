@@ -1,0 +1,18 @@
+.container {
+  background: #fff;
+  border-radius: 30px;
+  padding: 18px 20px 40px 20px;
+}
+.logoutbtn {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #f6b83d;
+  border: none;
+  background: #fff4df;
+  border-radius: 30px;
+  width: 114px;
+  height: 42px;
+}

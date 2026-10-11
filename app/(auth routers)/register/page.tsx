@@ -4,11 +4,13 @@ import Title from "@/app/components/ui/title/title";
 import css from "../page.module.css";
 import ImageBlock from "@/app/components/ui/ImageBlock/ImageBlock";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterFormSchema } from "@/app/lib/validation/shema";
 import Image from "next/image";
 import { useState } from "react";
+import { register as registerApi } from "@/app/services/auth";
+import { useRouter } from "next/navigation";
 interface RegisterFormValues {
   name: string;
   email: string;
@@ -19,16 +21,31 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors },
   } = useForm<RegisterFormValues>({
     resolver: yupResolver(RegisterFormSchema),
     mode: "onSubmit",
   });
-  const onSubmit = (data: RegisterFormValues) => {
-    console.log(data);
+  const router = useRouter();
+  const onSubmit = async (data: RegisterFormValues) => {
+    try {
+      // loader
+      const result = await registerApi({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
+
+      console.log("Registration successful:", result);
+      //toater
+      router.push("/profile");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      //toast
+    }
   };
-  const password = watch("password");
+  const password = useWatch({ control, name: "password" });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (

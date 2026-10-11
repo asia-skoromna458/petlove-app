@@ -3,11 +3,14 @@ import Image from "next/image";
 import css from "../page.module.css";
 import Link from "next/link";
 import ImageBlock from "@/app/components/ui/ImageBlock/ImageBlock";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormSchema } from "@/app/lib/validation/shema";
 import Title from "@/app/components/ui/title/title";
 import { useState } from "react";
+import { login } from "@/app/services/auth";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/app/lib/store/authStore";
 interface LoginFormvalues {
   email: string;
   password: string;
@@ -17,17 +20,35 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors },
   } = useForm<LoginFormvalues>({
     resolver: yupResolver(LoginFormSchema),
     mode: "onSubmit",
   });
-  const onSubmit = (data: LoginFormvalues) => {
-    console.log(data);
+  const router = useRouter();
+  const setAuth = useAuthStore((state) => state.setAuth);
+  const onSubmit = async (data: LoginFormvalues) => {
+    try {
+      // loader
+      const result = await login({
+        email: data.email,
+        password: data.password,
+      });
+
+      setAuth(result.token, {
+        name: result.name,
+        email: result.email,
+      });
+      //toater
+      router.push("/profile");
+    } catch (error) {
+      console.error("Login failed:", error);
+      //toast
+    }
   };
-  // додати тост якщо не вдалося залогінитись
-  const password = watch("password");
+
+  const password = useWatch({ control, name: "password" });
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className={css.container}>

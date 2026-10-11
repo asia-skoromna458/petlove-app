@@ -1,0 +1,27 @@
+.editPart {
+  display: flex;
+  justify-content: space-between;
+}
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #f6b83d;
+  border-radius: 30px;
+  width: 80px;
+  height: 38px;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.editBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff4df;
+  border-radius: 30px;
+  border: none;
+  padding: 10px;
+}
