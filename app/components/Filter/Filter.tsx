@@ -1,41 +1,14 @@
 "use client";
 import Image from "next/image";
 import Select from "react-select";
+import { useEffect, useState } from "react";
 import SearchField from "../ui/SearchField/SearchField";
 import css from "./Filter.module.css";
-import { useState } from "react";
-
-const CategoryOptions = [
-  { value: "", label: "Show all" },
-  { value: "sell", label: "Sell" },
-  { value: "free", label: "Free" },
-  { value: "lost", label: "Lost" },
-  { value: "found", label: "Found" },
-];
-const GenderOptions = [
-  { value: "", label: "Show all" },
-  { value: "unknown", label: "Unknown" },
-  { value: "female", label: "Female" },
-  { value: "male", label: "Male" },
-  { value: "multiple", label: "Multiple" },
-];
-const TypeOptions = [
-  { value: "", label: "Show all" },
-  { value: "dog", label: "Dog" },
-  { value: "cat", label: "Cat" },
-  { value: "monkey", label: "Monkey" },
-  { value: "bird", label: "Bird" },
-  { value: "snake", label: "Snake" },
-  { value: "turtle", label: "Turtle" },
-  { value: "lizard", label: "Lizard" },
-  { value: "frog", label: "Frog" },
-  { value: "fish", label: "Fish" },
-  { value: "ants", label: "Ants" },
-  { value: "bees", label: "Bees" },
-  { value: "butterfly", label: "Butterfly" },
-  { value: "spider", label: "Spider" },
-  { value: "scorpion", label: "Scorpion" },
-];
+import {
+  getNoticeCategories,
+  getNoticeSex,
+  getNoticeSpecies,
+} from "@/app/services/filter";
 
 const selectClassNames = {
   control: () => css.control,
@@ -51,23 +24,75 @@ const selectComponents = {
     <Image src="/icon/selecct-icon.svg" alt="" width={11} height={6} />
   ),
 };
+
 const locationComponent = {
   IndicatorSeparator: null,
   DropdownIndicator: () => (
     <Image src="/icon/search-icon.svg" alt="search" width={18} height={18} />
   ),
 };
+
 interface FilterProps {
   onFilterChange: (filters: {
     category?: string;
     species?: string;
     sex?: string;
     keyword?: string;
+    sortBy?: "popular" | "unpopular" | "cheap" | "expensive";
   }) => void;
 }
 
+type SelectOption = {
+  value: string;
+  label: string;
+};
+
 export default function Filter({ onFilterChange }: FilterProps) {
   const [keyword, setKeyword] = useState("");
+  const [categories, setCategories] = useState<SelectOption[]>([]);
+  const [genders, setGenders] = useState<SelectOption[]>([]);
+  const [species, setSpecies] = useState<SelectOption[]>([]);
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const [categoriesData, gendersData, speciesData] = await Promise.all([
+          getNoticeCategories(),
+          getNoticeSex(),
+          getNoticeSpecies(),
+        ]);
+
+        setCategories([
+          { value: "", label: "Show all" },
+          ...categoriesData.map((value: string) => ({
+            value,
+            label: value.charAt(0).toUpperCase() + value.slice(1),
+          })),
+        ]);
+
+        setGenders([
+          { value: "", label: "Show all" },
+          ...gendersData.map((value: string) => ({
+            value,
+            label: value.charAt(0).toUpperCase() + value.slice(1),
+          })),
+        ]);
+
+        setSpecies([
+          { value: "", label: "Show all" },
+          ...speciesData.map((value: string) => ({
+            value,
+            label: value.charAt(0).toUpperCase() + value.slice(1),
+          })),
+        ]);
+      } catch (error) {
+        console.error("Failed to load filter options:", error);
+      }
+    };
+
+    fetchOptions();
+  }, []);
+
   return (
     <div className={css.container}>
       <SearchField
@@ -80,7 +105,7 @@ export default function Filter({ onFilterChange }: FilterProps) {
       <div className={css.selectRow}>
         <Select
           unstyled
-          options={CategoryOptions}
+          options={categories}
           placeholder="Category"
           instanceId="category-select"
           className={`${css.select} ${css.smallSelect}`}
@@ -92,7 +117,7 @@ export default function Filter({ onFilterChange }: FilterProps) {
         />
         <Select
           unstyled
-          options={GenderOptions}
+          options={genders}
           placeholder="By gender"
           instanceId="gender-select"
           className={`${css.select} ${css.smallSelect} ${css.genderSelect}`}
@@ -105,7 +130,7 @@ export default function Filter({ onFilterChange }: FilterProps) {
       </div>
       <Select
         unstyled
-        options={TypeOptions}
+        options={species}
         placeholder="By type"
         instanceId="type-select"
         className={`${css.select} ${css.bigSelect} ${css.selectByType}`}
@@ -124,50 +149,37 @@ export default function Filter({ onFilterChange }: FilterProps) {
       />
       <hr className={css.divider} />
       <ul className={css.sortList}>
-        <li className={css.sortItem}>
-          <input type="radio" name="sort" />
-          <p>Popular</p>
-          <Image
-            src="/icon/close_icon.svg"
-            alt="cheked"
-            width={18}
-            height={18}
-            className={css.closeIcon}
-          />
-        </li>
-        <li className={css.sortItem}>
-          <input type="radio" name="sort" />
-          <p>Unpopular</p>
-          <Image
-            src="/icon/close_icon.svg"
-            alt="cheked"
-            width={18}
-            height={18}
-            className={css.closeIcon}
-          />
-        </li>
-        <li className={css.sortItem}>
-          <input type="radio" name="sort" />
-          <p>Cheap</p>
-          <Image
-            src="/icon/close_icon.svg"
-            alt="cheked"
-            width={18}
-            height={18}
-            className={css.closeIcon}
-          />
-        </li>
-        <li className={css.sortItem}>
-          <input type="radio" name="sort" />
-          <p>Expensive</p>
-          <Image
-            src="/icon/close_icon.svg"
-            alt="cheked"
-            width={18}
-            height={18}
-            className={css.closeIcon}
-          />
-        </li>
+        {[
+          { label: "Popular", value: "popular" },
+          { label: "Unpopular", value: "unpopular" },
+          { label: "Cheap", value: "cheap" },
+          { label: "Expensive", value: "expensive" },
+        ].map(({ label, value }) => (
+          <li className={css.sortItem} key={value}>
+            <input
+              type="radio"
+              name="sort"
+              value={value}
+              onChange={() =>
+                onFilterChange({
+                  sortBy: value as
+                    | "popular"
+                    | "unpopular"
+                    | "cheap"
+                    | "expensive",
+                })
+              }
+            />
+            <p>{label}</p>
+            <Image
+              src="/icon/close_icon.svg"
+              alt="close"
+              width={18}
+              height={18}
+              className={css.closeIcon}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );

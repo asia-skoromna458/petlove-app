@@ -1,7 +1,9 @@
 import Image from "next/image";
 import css from "./UserBlock.module.css";
+import { useAuthStore } from "@/app/lib/store/authStore";
 
 export default function UserBlock() {
+  const user = useAuthStore((state) => state.user);
   return (
     <div className={css.userInfo}>
       <div className={css.infoTop}>
@@ -18,9 +20,9 @@ export default function UserBlock() {
       <div className={css.infoBottom}>
         <h3 className={css.title}>My information</h3>
         <ul className={css.list}>
-          <li className={css.item}>name</li>
-          <li className={css.item}>email</li>
-          <li className={css.item}>телефон</li>
+          <li className={css.item}>{user?.name}</li>
+          <li className={css.item}>{user?.email}</li>
+          <li className={css.item}></li>
         </ul>
       </div>
     </div>

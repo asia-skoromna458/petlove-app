@@ -30,3 +30,7 @@ export interface NoticeParams {
   keyword?: string;
   locationId?: string;
 }
+
+export type NoticeCategories = string[];
+export type NoticeSex = string[];
+export type NoticeSpecies = string[];
