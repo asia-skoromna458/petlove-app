@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import css from "./Header.module.css";
 import { useState } from "react";
@@ -6,13 +7,27 @@ import MobileMenu from "./MobileMenu/MobileMenu";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/app/lib/store/authStore";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import { useLogOut } from "@/app/hooks/useLogOut";
+
 export default function Header() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
+
   const pathname = usePathname();
   const isHome = pathname === "/";
+
   const isAuthenticated = useAuthStore((state) => !!state.token);
   const userName = useAuthStore((state) => state.user?.name);
+
+  const handleLogoutConfirm = useLogOut();
+
+  const handleMobileLogoutClick = () => {
+    setIsOpen(false);
+    setIsLogOutModalOpen(true);
+  };
+
   return (
     <div className={`${css.container} ${isHome ? css.homeContainer : ""}`}>
       <Link href="/">
@@ -28,6 +43,7 @@ export default function Header() {
           ve
         </p>
       </Link>
+
       <nav className={css.desktopNav}>
         <Link
           href="/news"
@@ -56,16 +72,18 @@ export default function Header() {
           Our friends
         </Link>
       </nav>
+
       <div className={css.rightGroup}>
         <div className={css.desktopAction}>
           {!isAuthenticated && (
             <>
               <button
-                className={`${css.loginBtn} ? ${isHome ? css.homeloginBth : ""}`}
+                className={`${css.loginBtn} ${isHome ? css.homeloginBth : ""}`}
                 onClick={() => router.push("/login")}
               >
                 Log In
               </button>
+
               <button
                 className={css.registrationBtn}
                 onClick={() => router.push("/register")}
@@ -75,11 +93,18 @@ export default function Header() {
             </>
           )}
         </div>
+
         {isAuthenticated && (
           <div className={css.userMenu}>
             {!isHome && (
-              <button className={css.logOutBtnTablet}>Log out</button>
+              <button
+                className={css.logOutBtnTablet}
+                onClick={() => setIsLogOutModalOpen(true)}
+              >
+                Log out
+              </button>
             )}
+
             <Link
               href="/profile"
               aria-label="Open profile"
@@ -94,6 +119,7 @@ export default function Header() {
                   className={css.userIcon}
                 />
               </div>
+
               <span
                 className={`${css.userName} ${isHome ? css.homeUserName : ""}`}
               >
@@ -102,6 +128,7 @@ export default function Header() {
             </Link>
           </div>
         )}
+
         <button
           aria-label="Open menu"
           className={css.burgerMenu}
@@ -116,10 +143,21 @@ export default function Header() {
           />
         </button>
       </div>
+
       <MobileMenu
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         isHome={isHome}
+        onLogOutClick={handleMobileLogoutClick}
+      />
+
+      <ConfirmModal
+        isOpen={isLogOutModalOpen}
+        onClose={() => setIsLogOutModalOpen(false)}
+        onConfirm={async () => {
+          await handleLogoutConfirm();
+          setIsLogOutModalOpen(false);
+        }}
       />
     </div>
   );

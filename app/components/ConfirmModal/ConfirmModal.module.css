@@ -1,0 +1,90 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(38, 38, 38, 0.3);
+  z-index: 2000;
+}
+.modal {
+  background: #fff;
+  border-radius: 30px;
+  padding: 40px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.imageWrapper {
+  background-color: #fff4df;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.cat {
+  font-size: 44px;
+}
+.title {
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+}
+.btnContainer {
+  display: flex;
+  gap: 8px;
+}
+.logOutBtn {
+  border-radius: 30px;
+  width: 137px;
+  height: 42px;
+  background: #f6b83d;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.03em;
+  color: #fff;
+  border: none;
+}
+.cancelBtn {
+  border-radius: 30px;
+  border: none;
+  width: 134px;
+  height: 42px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.03em;
+  background: rgba(38, 38, 38, 0.05);
+}
+
+@media (min-width: 768px) {
+  .modal {
+    padding: 80px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 1.17;
+  }
+  .logOutBtn,
+  .cancelBtn {
+    width: 140px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
